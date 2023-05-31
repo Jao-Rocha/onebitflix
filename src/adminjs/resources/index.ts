@@ -2,7 +2,7 @@ import { ResourceWithOptions } from 'adminjs'
 import { Category, Course, Episode } from '../../models'
 import { CategoryResourceOptions } from './Category'
 import { courseResourceOptions } from './Course'
-import { episodeResourceOptions } from './Episode'
+import { episodeResourceFeatures, episodeResourceOptions } from './Episode'
 
 export const adminJsResources: ResourceWithOptions[] = [
   //aqui nesse array vai sendo adicionado os recursos a ser exibidos no catalogo
@@ -16,6 +16,7 @@ export const adminJsResources: ResourceWithOptions[] = [
   },
   {
     resource: Episode,
-    options: episodeResourceOptions
+    options: episodeResourceOptions,
+    features: episodeResourceFeatures
   }
 ]
