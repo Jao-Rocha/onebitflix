@@ -3,7 +3,7 @@ import AdminJSExpress from '@adminjs/express'
 import AdminJSSequelize from '@adminjs/sequelize'
 import { sequelize } from '../database'
 import { adminJsResources } from './resources'
-import { User } from '../models'
+import { Episode, User, Course, Category } from '../models'
 import bcrypt from 'bcrypt'
 import { locale } from './locale'
 AdminJS.registerAdapter(AdminJSSequelize)
@@ -34,7 +34,25 @@ export const adminJS = new AdminJS({
     }
   },
   //as traduções
-  locale: locale
+  locale: locale,
+  dashboard: {
+    //usando o bundle para passar a localizaçao do componente personalizado
+    component: AdminJS.bundle('./components/Dashboard'),
+    //esse handler vai ser os dados que chagaram no na api da dashboard
+    handler: async (req, res, context) => {
+      const courses = await Course.count()
+      const episodes = await Episode.count()
+      const categorys = await Category.count()
+      const standardUsers = await User.count({ where: { role: 'user' } })
+      //informando o formato json que vai chegar até a dashboard , formato chave valor , sendo a chave (key) uma string e o valor um number
+      res.json({
+        Cursos: courses,
+        Episódios: episodes,
+        Categorias: categorys,
+        Usuários: standardUsers
+      })
+    }
+  }
 })
 
 export const adminJSRouter = AdminJSExpress.buildAuthenticatedRouter(
