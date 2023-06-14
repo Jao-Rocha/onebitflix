@@ -4,7 +4,7 @@ import { Episode } from './Episode'
 import { User } from './User'
 
 //criando a associação abaixo
-Category.hasMany(Course) //hasMany significa que tem muitas , por exemplo , uma categoria pode ter muitos cursos, é passado de parametro o Course
+Category.hasMany(Course, { as: 'courses' }) //hasMany significa que tem muitas , por exemplo , uma categoria pode ter muitos cursos, é passado de parametro o Course
 Course.belongsTo(Category) //significa que pertence a tabela Category
 
 //mais associaçao de um pra muitos
