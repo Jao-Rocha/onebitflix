@@ -8,7 +8,7 @@ Category.hasMany(Course, { as: 'courses' }) //hasMany significa que tem muitas ,
 Course.belongsTo(Category) //significa que pertence a tabela Category
 
 //mais associaçao de um pra muitos
-Course.hasMany(Episode) //Episodes - //Course tem muitos episodes
+Course.hasMany(Episode, { as: 'episodes' }) //Episodes - //Course tem muitos episodes
 Episode.belongsTo(Course) // episode pertence a um course
 
 export { Category, Course, Episode, User }

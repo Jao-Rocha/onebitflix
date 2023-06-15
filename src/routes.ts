@@ -1,4 +1,4 @@
-//aqui incluimos as rotas na aplicaçao
+//aqui incluimos as rotas na aplicaçao, as ordens aqui sao importantes
 import express from 'express'
 import { categoriesController } from './controlers/categoriesController'
 import { coursesController } from './controlers/coursesController'
@@ -10,6 +10,8 @@ const router = express.Router()
 router.get('/categories', categoriesController.index)
 router.get('/categories/:id', categoriesController.show)
 
-router.get('/courses/:id', coursesController.show)
+router.get('/courses/featured', coursesController.featured)
+router.get('/courses/:id', coursesController.show) //quando se tem varialvel dinamica como o id , ela precisa ficar abaixo dos outros caminhos
+//se fosse invertido o featured seria entedido como um id
 
 export { router }
