@@ -11,6 +11,7 @@ router.get('/categories', categoriesController.index)
 router.get('/categories/:id', categoriesController.show)
 
 router.get('/courses/featured', coursesController.featured)
+router.get('/courses/newest', coursesController.newest)
 router.get('/courses/:id', coursesController.show) //quando se tem varialvel dinamica como o id , ela precisa ficar abaixo dos outros caminhos
 //se fosse invertido o featured seria entedido como um id
 

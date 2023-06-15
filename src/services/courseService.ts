@@ -38,5 +38,14 @@ export const courseService = {
       () => 0.5 - Math.random() //metodo random vai gerar um numero aleatorio entre 0 e 1
     )
     return randomFeaturedCourses.slice(0, 3) //slice vai cortar o array e criar um novo , pegando do index 0 ao 2
+  },
+
+  getTopTenNewest: async () => {
+    const courses = await Course.findAll({
+      //aqui vai pegar todos os dados , se limitando a 10 cursos
+      limit: 10,
+      order: [['created_at', 'DESC']] // ordenddo do que foi criado a menos tempo para o que foi criado a mais tempo
+    })
+    return courses
   }
 }
